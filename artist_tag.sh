@@ -1,12 +1,11 @@
 #!/bin/bash
 
-    curl "http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=dark%20ambient&api_key=<YOUR LASTFM API KEY>&format=xml" > artist_tag.xml
+    curl "http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=$1&page=$2&api_key=<LAST FM API KEY>&format=xml" > $1$2.xml
 
     sleep 5
 
-    grep name artist_tag.xml | tr -d '\t' |  sed 's/\(.*\)>\(.*\)<\(.*\)/\2/' >> artist_tag.txt 
+    grep name $1$2.xml | tr -d '\t' |  sed 's/\(.*\)>\(.*\)<\(.*\)/\2/' >> $1$2.txt 
 
     sleep 5
 
-    wc -l artist_tag.txt
-
+    wc -l $1$2.txt
